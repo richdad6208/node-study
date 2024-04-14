@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import QueryProvider from "../contexts/QueryProvider";
 
 const noto = Noto_Sans_KR({
   weight: ["300", "400", "600", "700"],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={noto.className}>
-        <Header />
-        {auth}
-        {children}
+        <QueryProvider>
+          <Header />
+          {auth}
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

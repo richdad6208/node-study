@@ -1,14 +1,12 @@
-import express from "express";
-import { Request, Response } from "express";
-
-const app = express();
+import { createServer } from "node:http";
+import { signupRoute } from "./routers/auth/signup";
 
 const port = 3000;
 
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Hello World!");
+export const server = createServer((req, res) => {
+  signupRoute(req, res);
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
